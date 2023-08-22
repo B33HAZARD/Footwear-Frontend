@@ -1,0 +1,12 @@
+.productDescription {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 20px !important;
+}
+
+.productDescription,
+.productProps {
+    color: #595959;
+    font-size: 14px;
+}

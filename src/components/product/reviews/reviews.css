@@ -1,0 +1,24 @@
+.prdReviewHeading {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: 'Rokkitt', serif;
+}
+
+.giveReviewContainer {
+   background-color:  #fafafa;
+   padding: 2rem;
+}
+
+.giveReviewContainer span {
+    color: #616161;
+}
+
+.giveReviewContainer .reviewText {
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 300;
+    color: #b3b3b3;
+}

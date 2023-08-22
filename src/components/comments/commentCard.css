@@ -1,0 +1,49 @@
+.thumb {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.commentReply {
+    background-color: #f0f0f0;
+    padding: 0 12px;
+    border-radius: 4px;
+    width:fit-content;
+    text-align: right;
+    float: right;
+    cursor: pointer;
+}
+
+.commentReply,
+.ratings span {
+    color: #616161;
+}
+
+.commentDate {
+    color: #b3b3b3;
+    font-size: 13px;
+}
+
+.commentDate,
+.commentTitle {
+    font-family: 'Rokkitt', serif;
+    text-transform: uppercase;
+}
+
+.commentTitle {
+    color: #000;
+}
+
+.comment {
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 300;
+    color: #595959;
+}

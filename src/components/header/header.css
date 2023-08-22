@@ -1,0 +1,206 @@
+.logo h1 {
+    color: #595959;
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.searchBox {
+    position: relative;
+}
+
+.searchBox input {
+    outline: none;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 30px;
+    padding: 6px 44px 6px 13px;
+    font-size: 13px;
+    height: 40px;
+}
+
+.searchBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background-color: var(--fwPrimary);
+    color: white;
+    transition: all 250ms ease-in;
+}
+
+.searchBtn:hover {
+    background-color: black;
+}
+
+    /* Navbar */
+
+.navMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul.navList {
+    padding: 0;
+    margin: 28px 0 0 0;
+    gap: 4px;
+    display: flex;
+    align-items: center;
+}
+
+ul.navList.subNavList {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 140px;
+    top: 2px;
+    left: -10px;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #000;
+    box-shadow: 0 14px 33px -9px rgba(0, 0, 0, 0.75);
+    transform-origin: 100% 0;
+    transition: display 2s ease-in;
+}
+
+ul.navList.subNavList::before {
+    content: ' ';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 18px;
+    height: 18px;
+    background-color: #000;
+    transform: rotate(45deg);
+
+}
+
+li.navItem:hover ul.navList.subNavList {
+    display: block;
+}
+
+li.navItem {
+    list-style-type: none;
+    padding: 0 8px;
+    /*margin-right: 16px;*/
+    transition: all 0.5s ease;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+.subNavLink,
+li.navItem .navLink {
+    font-family: 'Rokkitt', serif;
+    text-decoration: none;
+    color: #000;
+}
+
+.subNavLink {
+    color: #999;
+    transition: all 0.5s ease;
+}
+
+li.navItem.subNavItem {
+    font-size: 16px;
+    padding: 0;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+    color: #999;
+    line-height: 1.2;
+    letter-spacing: normal;
+}
+
+.subNavItem .subNavLink:hover {
+    color: #fff;
+}
+
+/* ul.navList.subNavList::before {
+    position: absolute;
+    transform: rotate(90deg);
+    background-color: #fff;
+    z-index: 1000;
+    top:0;
+} */
+
+.navList.cartItems {
+margin-top: 16px;
+}
+
+li.navCart {
+    position: relative;
+    height: fit-content;
+    font-family: 'Rokkitt', serif;
+}
+
+.navCartIcon {
+    font-size: 22px;
+}
+
+.navHamburger {
+    display: none;
+    font-size: 32px;
+}
+
+
+/* ============= MEDIA QUERIES =============*/
+
+@media screen and (max-width: 767px) {
+    .navHamburger {
+        display: block;
+    }
+
+    .navHamburger span {
+        cursor: pointer;
+    }
+
+    .navMenuWrapper {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .navMenu {
+        background-color: #000;
+        color: #aaa;
+        position: absolute;
+        top: -110px;
+        right: -16px;
+        display: block;
+        width: 250px;
+        height: 99vh;
+        transform: translateX(999px);
+        transition: all 250ms ease-in;
+        padding: 16px 32px;
+    }
+    
+    .navMenu li.navItem {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: normal;
+        text-transform: capitalize;
+    }
+
+    .navMenu.navMenuOpen {
+        transform: translateX(10px);
+    }
+
+    ul.navList {
+        display: block;
+    }
+
+    ul.navList.subNavList {
+
+    }
+
+    .navMenu li.navItem ul.navList.subNavList {
+        display: block;
+    }
+
+    li.navItem:hover ul.navList.subNavList {
+        display: inherit;
+    }
+}

@@ -1,0 +1,20 @@
+.productWrapper {
+    border: 1px solid #dee2e6 !important;
+}
+
+
+.productThumbnail {
+    width: 100%;
+    cursor: pointer;
+}
+
+.ProductBody {
+    padding: 1.5rem;
+}
+
+.ProductBody h4 {
+    font-weight: 400;
+    margin-bottom: 12px !important;
+    cursor: pointer;
+    color: #000;
+}

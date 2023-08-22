@@ -1,0 +1,77 @@
+.slideHeading1 {
+    font-weight: 700;
+    font-size: 60px;
+
+}
+
+.slideHeading2 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.slideHeading3 {
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.slideHeading1,
+.slideHeading2,
+.slideHeading3 {
+    margin-bottom: 0;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.slideDescription {
+    color: white;
+    font-family: "Montserrat", Arial, sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px !important;
+}
+
+.slideBtn {
+    padding: 20px 30px !important;
+    color: white;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    border: none;
+    background-color: #616161;
+    border-radius: 30px;
+    transition: all 250ms ease-in;
+}
+
+.slideBtn:hover {
+    background-color: #000;
+}
+
+.slideContent {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    transform: translateY(48px);
+    transition: all 500ms ease-in;
+    /*animation-name: descriptionTransition;*/
+    /*animation-duration: 3500ms;*/
+    /*animation-iteration-count: infinite;*/
+}
+
+.vueperslide.vueperslide--active.vueperslide--visible .slideContent {
+    transform: translateY(0);
+}
+
+/* Animations */
+
+@keyframes descriptionTransition {
+    from {
+        transform: translateY(48px);
+    }
+    to {
+        transform: translateY(0);
+    }
+
+}
