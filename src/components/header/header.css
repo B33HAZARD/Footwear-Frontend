@@ -134,6 +134,7 @@ li.navCart {
     position: relative;
     height: fit-content;
     font-family: 'Rokkitt', serif;
+    color: #000;
 }
 
 .navCartIcon {

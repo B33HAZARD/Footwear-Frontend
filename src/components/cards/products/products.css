@@ -2,9 +2,15 @@
     border: 1px solid #dee2e6 !important;
 }
 
-
-.productThumbnail {
+.productHeader {
     width: 100%;
+    height: auto;
+    object-fit:contain;
+}
+
+.productHeader .productThumbnail {
+    width: 100%;
+    height: auto;
     cursor: pointer;
 }
 

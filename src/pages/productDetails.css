@@ -135,3 +135,38 @@
 .detailsBtn:hover {
     background-color: #000;
 }
+
+.quantityContainer button {
+    width: 45px;
+    background-color: #ccc;
+    font-size: 22px;
+    cursor: pointer;
+    color: #595959;
+    border: none;
+}
+
+.quantityContainer button:hover {
+    background-color: #616161;
+    color: #ddd;
+}
+
+.quantityContainer button,
+.itemQuantity input {
+    height: 45px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    font-weight: 300;
+    text-align: center;
+    transition: all 250ms ease-in;
+}
+
+.itemQuantity {
+    margin: 0 5px;
+}
+
+.itemQuantity input {
+    font-size: 14px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 100%;
+}

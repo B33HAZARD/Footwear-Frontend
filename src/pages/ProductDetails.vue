@@ -6,6 +6,8 @@ import Breadcrumbs from "@/components/nav/Breadcrumbs.vue";
 import { Icon } from '@iconify/vue2';
 import ProdductSize from "../components/size/ProductSize.vue";
 
+import axios from "axios";
+
 
 export default {
   name: "ProductDetails-page",
@@ -17,13 +19,19 @@ export default {
     Icon,
     ProdductSize,
   },
+
   data() {
     return {
       id: this.$route.params.id,
-      productImg: "/assets/images/item-1.jpg",
       tabIndex:0,
+      product: null,
+      loading: true,
+      inputValue: 1,
+      size: 7,
+      category: null,
     }
 },
+
   methods: {
     linkClass(idx) {
       if (this.tabIndex === idx) {
@@ -31,50 +39,98 @@ export default {
       } else {
         return ['bg-secondary', 'text-dark']
       }
+    }, 
+    async getProductDetails() {
+      await axios
+      .get(`https://fakestoreapi.com/products/${this.id}`)
+      .then(response => {
+        this.product = response.data;
+        this.category = response.data.category;
+        console.log(response.data)
+      })
+      .catch(err => this.product = err.data)
+      .finally(() => this.loading = false);
+    },
+    handleInput(e) {
+      console.log(e.target.value);
+      this.inputValue = e.target.value
+    },
+    handleDecrement() {
+      if(this.inputValue > 1) {
+        this.inputValue--;
+      }
+    },
+    handleIncrement() {
+      this.inputValue++;
+    },
+    handleSetSize(size) {
+      this.size = size;
     }
-  }
+  },
+
+  mounted() {
+    this.getProductDetails();
+  },
 }
 </script>
 
 <template>
 <div class="customContainer">
-  <Breadcrumbs />
+  <Breadcrumbs title="product details" />
   <div class="sectionPadding">
     <!-- Product View -->
   <div class="sectionPaddingBottom">
   <div class="row g-0 justify-content-center">
 <div class="col-12 col-md-8 col-lg-7 col-xl-8 pe-md-3 pe-xl-5">
   <div class="productImage border">
-    <img :src="productImg" alt="product" />
+    <img :src="product.image" alt="product" />
   </div>
 </div>
 <!-- Product Details -->
 <div class="col-12 col-md-4 col-lg-5 col-xl-4 mt-4 mt-md-0">
   <section class="productDetails">
-    <h3>women&apos;s boots shoes maca</h3>
+    <h3>{{ product.title }}</h3>
     <div class="detailPrice">
-      <p>&dollar;68.00</p>
+      <p>&dollar;{{ product.price }}</p>
       <span class="me-1"><Icon icon="bi:star-fill" /></span>
       <span class="me-1"><Icon icon="bi:star-fill" /></span>
       <span class="me-1"><Icon icon="bi:star-fill" /></span>
       <span class="me-1"><Icon icon="bi:star-fill" /></span>
       <span class="me-1"><Icon icon="bi:star" /></span>
-      <span class="me-1 reviewText">&#40;74 Rating&#41;</span>
+      <span class="me-1 reviewText">&#40;{{ product.rating.count }} Rating&#41;</span>
   </div>
   <p class="detailDescription">
-    Even the all-powerful Pointing has no control about the blind 
-    texts it is an almost unorthographic life One day however a small line of 
-    blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+    {{ product.description   }}
   </p>
   </section>
+    <!-- sizes -->
   <h4 class="detailsSmallHeadings">Size</h4>
-  <ProdductSize />
+  <ProdductSize @setSize="handleSetSize" />
+    <!-- width -->
   <h4 class="detailsSmallHeadings">Width</h4>
   <div class="widthContainer row g-0 mb-4">
     <div class="col-auto">M</div>
     <div class="col-auto">W</div>
   </div>
+    <!-- quantity -->
+    <div class="row g-0 quantityContainer align-items-center mb-4">
+      <div class="col-auto">
+        <button v-on:click="handleDecrement">
+          -
+        </button>
+      </div>
+      <div class="col itemQuantity">
+        <input min="1" type="number" name="itemQuantity" :value="inputValue" @input="handleInput" />
+      </div>
+      <div class="col-auto">
+        <button @click="handleIncrement">
+          +
+        </button>
+      </div>
+    </div>
+    <router-link to="/cart">
   <button class="detailsBtn"><span><Icon icon="ion:cart-outline" /></span> Add to Cart</button>
+</router-link>
 </div>
     </div>
   </div>

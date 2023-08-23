@@ -79,10 +79,12 @@ export default {
       </div>
       <div class="col-auto">
         <ul class="navList cartItems">
+        <router-link to="/cart">
           <li class="navItem navCart">
             <span class="navCartIcon"><Icon icon="ion:cart-outline" /></span>
             cart [{{navCarItems}}]
           </li>
+        </router-link>
         </ul>
       </div>
     </div>

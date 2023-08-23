@@ -19,7 +19,7 @@ export default {
     Header,
     Footer,
     SliderRibbon,
-  }
+  },
 }
 </script>
 

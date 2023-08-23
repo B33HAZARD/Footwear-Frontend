@@ -1,6 +1,6 @@
 <template>
     <div class="row g-0 mb-4">
-        <div class="col-auto sizes align-self-center" v-for="size in sizes" :key="'s' + size.id">
+        <div class="col-auto sizes align-self-center" v-for="size in sizes" :key="'s' + size.id" @click="$emit('setSize', size.size)">
         {{size.size}}
     </div>
     </div>

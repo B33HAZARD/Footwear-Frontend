@@ -10,7 +10,7 @@
                 </router-link>
                 &#47;
                 <span>
-                    product details
+                    {{ title }}
                 </span>
         </p>
         </div>
@@ -23,6 +23,9 @@
 
 export default {
     name: "Breadcrumbs-component",
+    props: {
+        title: String,
+    }
 }
 
 </script>
