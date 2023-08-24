@@ -2,25 +2,32 @@
 
 import Products from '../cards/products/Products.vue';
 
-import axios from 'axios';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: "BestSellers-component",
   data() {
     return {
-      products: null,
     }
   },
   methods: {
-    async getProducts () {
-        await axios
-        .get('https://fakestoreapi.com/products')
-        .then(response => (this.products = response.data))
-    }
+
+    ...mapActions([
+      'getProducts'
+    ]),
+
   },
-  mounted() {
+
+  created() {
     this.getProducts();
   },
+
+  computed: {
+    ...mapGetters([
+      'products'
+    ])
+  },
+
     components: {
         Products,
     },

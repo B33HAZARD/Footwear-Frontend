@@ -6,8 +6,7 @@ import Breadcrumbs from "@/components/nav/Breadcrumbs.vue";
 import { Icon } from '@iconify/vue2';
 import ProdductSize from "../components/size/ProductSize.vue";
 
-import axios from "axios";
-
+import { mapActions, mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "ProductDetails-page",
@@ -24,7 +23,6 @@ export default {
     return {
       id: this.$route.params.id,
       tabIndex:0,
-      product: null,
       loading: true,
       inputValue: 1,
       size: 7,
@@ -40,17 +38,16 @@ export default {
         return ['bg-secondary', 'text-dark']
       }
     }, 
-    async getProductDetails() {
-      await axios
-      .get(`https://fakestoreapi.com/products/${this.id}`)
-      .then(response => {
-        this.product = response.data;
-        this.category = response.data.category;
-        console.log(response.data)
-      })
-      .catch(err => this.product = err.data)
-      .finally(() => this.loading = false);
-    },
+
+    ...mapActions([
+      'getProductDetails',
+    ]),
+
+    ...mapMutations([
+      'updateSize',
+      'updateItemCount',
+    ]),
+
     handleInput(e) {
       console.log(e.target.value);
       this.inputValue = e.target.value
@@ -64,13 +61,24 @@ export default {
       this.inputValue++;
     },
     handleSetSize(size) {
-      this.size = size;
+      console.log("size: ", size)
+      this.updateSize(size);
+    },
+    updateCart() {
+      this.updateItemCount(this.inputValue);
     }
   },
 
-  mounted() {
-    this.getProductDetails();
+  computed: {
+    ...mapGetters([
+      'product'
+    ]),
   },
+
+  created() {
+    this.getProductDetails(this.id);
+  },
+
 }
 </script>
 
@@ -115,12 +123,12 @@ export default {
     <!-- quantity -->
     <div class="row g-0 quantityContainer align-items-center mb-4">
       <div class="col-auto">
-        <button v-on:click="handleDecrement">
+        <button @click="handleDecrement">
           -
         </button>
       </div>
       <div class="col itemQuantity">
-        <input min="1" type="number" name="itemQuantity" :value="inputValue" @input="handleInput" />
+        <input min="1" type="number" name="itemQuantity" v-model="inputValue" />
       </div>
       <div class="col-auto">
         <button @click="handleIncrement">
@@ -129,7 +137,7 @@ export default {
       </div>
     </div>
     <router-link to="/cart">
-  <button class="detailsBtn"><span><Icon icon="ion:cart-outline" /></span> Add to Cart</button>
+  <button class="detailsBtn" @click="updateCart"><span><Icon icon="ion:cart-outline" /></span> Add to Cart</button>
 </router-link>
 </div>
     </div>

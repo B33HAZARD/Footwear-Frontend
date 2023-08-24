@@ -5,16 +5,16 @@
                 <div class="row g-0 align-items-center">
                     <div class="col-auto">
                         <div class="cartThumb">
-                            <img :src="image" />
+                            <img :src="product.image" />
                         </div>
                     </div>
                     <div class="col-auto productTitle">
-                        <span>Product Name</span>
+                        <span>{{ product.title }}</span>
                     </div>
                 </div>
             </div>
             <div class="col price">
-                <p>&dollar;68.00</p>
+                <p>&dollar;{{ product.price }}</p>
             </div>
             <div class="col cartQuantity">
                 <input min="1" type="number" name="productQuantity" :value="quantity" />
@@ -49,9 +49,14 @@ export default {
     components: {
         Icon,
     },
-    computed: mapGetters([
-    'totalPrice'
-    ])
+    computed: {
+        ...mapGetters([
+            'product',
+            'totalPrice',
+            'qunatity'
+        ]),
+
+    }
 }
 
 </script>

@@ -1,5 +1,6 @@
 <script>
 
+import { mapMutations } from 'vuex';
 
 export default {
     name: "Products-component",
@@ -11,12 +12,19 @@ export default {
     },
     data() {
         return {
-            
         }
     },
-    components: {
 
-    },
+    methods: {
+
+        ...mapMutations([
+            'getProductId',
+        ]),
+
+        setProductId() {
+            this.getProductId(this.id)
+        }
+    }
 }
 
 </script>

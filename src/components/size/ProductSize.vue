@@ -1,12 +1,15 @@
 <template>
     <div class="row g-0 mb-4">
-        <div class="col-auto sizes align-self-center" v-for="size in sizes" :key="'s' + size.id" @click="$emit('setSize', size.size)">
+        <div class="col-auto sizes align-self-center" :class="{'selected': getSize == size.size}" v-for="size in sizes" :key="'s' + size.id" @click="$emit('setSize', size.size)">
         {{size.size}}
     </div>
     </div>
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
     name: "ProductSize-component",
     data() {
@@ -29,9 +32,16 @@ export default {
                 {size:14, id: 15},
             ]
         }
-    }
+    },
+
+    computed: {
+        ...mapGetters([
+            'getSize'
+        ]),
+    },
 
 }
+
 </script>
 
 <style scoped>
@@ -55,6 +65,11 @@ export default {
 }
 
 .sizes:hover {
+    background-color: #616161;
+    color: white;
+}
+
+.selected {
     background-color: #616161;
     color: white;
 }
