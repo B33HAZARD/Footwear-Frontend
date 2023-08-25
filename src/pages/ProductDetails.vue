@@ -61,9 +61,9 @@ export default {
     handleIncrement() {
       this.inputValue++;
     },
-    handleSetSize(size) {
-      console.log("size: ", size)
-      this.updateSize(size);
+    handleSetSize(ItemSize) {
+      console.log("size: ", ItemSize);
+      this.size = ItemSize;
     },
     updateCart() {
       this.updateItemCount(this.inputValue);

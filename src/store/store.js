@@ -11,6 +11,7 @@ const state = {
     price: 30,
     size: 7,
     quantity: 1,
+    cart: [],
 }
 
 const getters = {
@@ -23,16 +24,11 @@ const getters = {
 
 const mutations = {
 
-    getAllProducts(state, items) {
+    setAllProducts(state, items) {
         state.products = items;
     },
 
-    getProductId(state, id) {
-        console.log("mutations id: ", id)
-        state.singleProductId = id;
-    },
-
-    getSingleProduct(state, item) {
+    setSingleProduct(state, item) {
         state.singleProduct = item
     },
 
@@ -46,6 +42,14 @@ const mutations = {
 
     setPrice(state, price) {
         state.price = price;
+    },
+
+    addProductToCart(state, product) {
+        state.cart.push({...product, quantity: 1})
+    },
+
+    incrementProduct() {
+       console.log("working on it")
     }
 
 }
@@ -56,7 +60,7 @@ const actions = {
         await axios
         .get('https://fakestoreapi.com/products')
         .then(response => {
-            commit('getAllProducts', response.data);
+            commit('setAllProducts', response.data);
         })
         .catch(err => console.log(err))
     },
@@ -66,9 +70,18 @@ const actions = {
             .get(`https://fakestoreapi.com/products/${id}`)
             .then(response => {
             console.log("Just one product: ", response.data);
-            commit('getSingleProduct', response.data);
+            commit('setSingleProduct', response.data);
         })
     },
+
+    addTocart({commit}, product) {
+        // const existingProduct = state.cart.find(item => item.id == product.id);
+
+        // if(existingProduct) {
+        //     commit('incrementProduct', existingProduct);
+        // } else
+        commit('addProductToCart', product);
+    }
 }
 
 
