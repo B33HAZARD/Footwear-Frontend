@@ -17,7 +17,7 @@
                 <p>&dollar;{{ product.price }}</p>
             </div>
             <div class="col cartQuantity">
-                <input min="1" type="number" name="productQuantity" :value="quantity" />
+                <input min="1" type="number" name="productQuantity" :value="getQuantity" disabled/>
             </div>
             <div class="col total">
                 <p>
@@ -41,7 +41,6 @@ export default {
     name: "CartProduct-component",
     data() {
         return {
-            quantity: this.$store.state.quantity,
             image: '/assets/images/item-3.jpg',
             inputValue: 1
         }
@@ -49,11 +48,16 @@ export default {
     components: {
         Icon,
     },
+
+    methods: {
+
+    },
+
     computed: {
         ...mapGetters([
             'product',
             'totalPrice',
-            'qunatity'
+            'getQuantity'
         ]),
 
     }

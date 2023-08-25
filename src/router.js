@@ -5,14 +5,16 @@ import VueRouter from 'vue-router';
 // Import your Vue components
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
-import Cart from "./pages/Cart"
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout"
 
 Vue.use(VueRouter);
 
 const routes = [
   { path: '/', name: "Home", component: Home },
   { path: '/product/:id', name: "ProductDetails", component: ProductDetails },
-  { path: '/cart', name: "Cart", component: Cart }
+  { path: '/cart', name: "Cart", component: Cart },
+  { path: '/checkout', name: "Checkout", component: Checkout }
 ];
 
 const router = new VueRouter({

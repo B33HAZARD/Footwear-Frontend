@@ -11,6 +11,9 @@
             </div>
             <CartProduct />
         </div>
+        <router-link to="/checkout">
+            <button class="checkoutBtn">checkout</button>
+        </router-link>
     </div>
 </template>
 

@@ -18,7 +18,7 @@ const getters = {
     product: state => state.singleProduct,
     totalPrice: state => state.quantity * state.price,
     getSize: state => state.size,
-    quantity: state => state.quantity,
+    getQuantity: state => state.quantity,
 }
 
 const mutations = {
@@ -42,6 +42,10 @@ const mutations = {
 
     updateSize(state, size) {
         state.size = size;
+    },
+
+    setPrice(state, price) {
+        state.price = price;
     }
 
 }

@@ -46,6 +46,7 @@ export default {
     ...mapMutations([
       'updateSize',
       'updateItemCount',
+      'setPrice',
     ]),
 
     handleInput(e) {
@@ -66,6 +67,7 @@ export default {
     },
     updateCart() {
       this.updateItemCount(this.inputValue);
+      this.setPrice(this.product.price);
     }
   },
 
@@ -136,9 +138,9 @@ export default {
         </button>
       </div>
     </div>
-    <router-link to="/cart">
+    <!-- <router-link to="/cart"> -->
   <button class="detailsBtn" @click="updateCart"><span><Icon icon="ion:cart-outline" /></span> Add to Cart</button>
-</router-link>
+<!-- </router-link> -->
 </div>
     </div>
   </div>
