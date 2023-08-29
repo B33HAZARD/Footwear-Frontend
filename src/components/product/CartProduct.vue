@@ -1,11 +1,12 @@
 <template>
-    <div class="cartCardContainer border-bottom">
+  <div>
+    <div class="cartCardContainer border-bottom"  v-for="(product, index) in getCart" :key="product.title" :id="product.id" ref="cartItem">
         <div class="g-0 align-items-center row">
             <div class="col-6">
                 <div class="row g-0 align-items-center">
                     <div class="col-auto">
                         <div class="cartThumb">
-                            <img :src="product.image" />
+                            <img :src="product.img" alt="product" />
                         </div>
                     </div>
                     <div class="col-auto productTitle">
@@ -17,20 +18,21 @@
                 <p>&dollar;{{ product.price }}</p>
             </div>
             <div class="col cartQuantity">
-                <input min="1" type="number" name="productQuantity" :value="getQuantity" disabled/>
+                <input min="1" type="number" name="productQuantity" :value="product.count" disabled/>
             </div>
             <div class="col total">
                 <p>
-                    &dollar;{{ totalPrice }}
+                    &dollar;{{ product.totalPrice }}
                 </p>
         </div>
             <div class="col">
-                <button class="removeFromCart">
+                <button class="removeFromCart" @click="handleClick(index)">
                     <Icon icon="ep:close" />
                 </button>
             </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -50,14 +52,14 @@ export default {
     },
 
     methods: {
-
+      handleClick(index) {
+        this.getCart.splice(index, 1);
+        }
     },
 
     computed: {
         ...mapGetters([
-            'product',
-            'totalPrice',
-            'getQuantity'
+            'getCart'
         ]),
 
     }

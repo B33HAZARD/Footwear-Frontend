@@ -20,9 +20,15 @@ export default {
 
     computed: {
         ...mapGetters([
-            'getQuantity'
+            'getQuantity',
         ])
-    }
+    },
+
+  data() {
+
+  },
+
+
 }
 
 </script>

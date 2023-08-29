@@ -26,11 +26,19 @@ export default {
     components: {
         Breadcrumbs,
         CartProduct
-    }
+    },
+
+  methods: {
+  },
+
+  computed: {
+
+  },
+
 }
 
 </script>
 
 <style scoped>
-@import './cart.css'
+@import './cart.css';
 </style>

@@ -40,5 +40,5 @@ export default {
 
 
 <style scoped>
-@import './products.css'
+@import './products.css';
 </style>

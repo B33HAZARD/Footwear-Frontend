@@ -4,7 +4,7 @@ import Manufacturer from "@/components/product/Manufacturer.vue";
 import ProductReviews from "@/components/product/ProductReviews.vue";
 import Breadcrumbs from "@/components/nav/Breadcrumbs.vue";
 import { Icon } from '@iconify/vue2';
-import ProdductSize from "../components/size/ProductSize.vue";
+import ProductSize from "../components/size/ProductSize.vue";
 
 import { mapActions, mapMutations, mapGetters } from "vuex";
 
@@ -16,17 +16,18 @@ export default {
     ProductReviews,
     Breadcrumbs,
     Icon,
-    ProdductSize,
+    ProductSize,
   },
 
   data() {
     return {
       id: this.$route.params.id,
       tabIndex:0,
-      loading: true,
+      category: null,
       inputValue: 1,
       size: 7,
-      category: null,
+      cartObj: {},
+      loading: true,
     }
 },
 
@@ -44,30 +45,46 @@ export default {
     ]),
 
     ...mapMutations([
-      'updateSize',
-      'updateItemCount',
-      'setPrice',
+      'addProductToCart',
     ]),
 
-    handleInput(e) {
-      console.log(e.target.value);
-      this.inputValue = e.target.value
+    TotalPrice() {
+     return this.product.price * this.inputValue;
     },
+
     handleDecrement() {
       if(this.inputValue > 1) {
         this.inputValue--;
       }
     },
+
     handleIncrement() {
       this.inputValue++;
     },
+
     handleSetSize(ItemSize) {
       console.log("size: ", ItemSize);
       this.size = ItemSize;
     },
+
+    handleChange(e) {
+      console.log(e.target.value, "changed")
+      this.inputValue = e.target.value;
+
+    },
+
     updateCart() {
-      this.updateItemCount(this.inputValue);
-      this.setPrice(this.product.price);
+      const totalPrice = this.TotalPrice();
+      this.cartObj = { ...this.cartObj,
+        size: this.size,
+        totalPrice: totalPrice,
+        count: this.inputValue,
+        price: this.product.price,
+        title: this.product.title,
+        img: this.product.image,
+        id: this.product.id,
+      }
+      this.addProductToCart(this.cartObj)
     }
   },
 
@@ -75,6 +92,7 @@ export default {
     ...mapGetters([
       'product'
     ]),
+
   },
 
   created() {
@@ -115,7 +133,7 @@ export default {
   </section>
     <!-- sizes -->
   <h4 class="detailsSmallHeadings">Size</h4>
-  <ProdductSize @setSize="handleSetSize" />
+  <ProductSize @setSize="handleSetSize" />
     <!-- width -->
   <h4 class="detailsSmallHeadings">Width</h4>
   <div class="widthContainer row g-0 mb-4">
@@ -130,7 +148,7 @@ export default {
         </button>
       </div>
       <div class="col itemQuantity">
-        <input min="1" type="number" name="itemQuantity" v-model="inputValue" />
+        <input min="1" type="number" name="itemQuantity" :value="inputValue" @change="handleChange" />
       </div>
       <div class="col-auto">
         <button @click="handleIncrement">

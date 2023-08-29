@@ -1,13 +1,17 @@
 <script>
 import {Icon} from "@iconify/vue2";
 import dropdown from "bootstrap/js/src/dropdown";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Header-component",
   computed: {
     dropdown() {
       return dropdown
-    }
+    },
+    ...mapGetters([
+        'getCart'
+    ])
   },
   components: {
     Icon,
@@ -34,9 +38,9 @@ export default {
   methods: {
     handleShowMenu: function() {
       this.showMenu = !this.showMenu;
-      console.log("clicked!")
     },
   },
+
 }
 </script>
 
@@ -82,7 +86,7 @@ export default {
         <router-link to="/cart">
           <li class="navItem navCart">
             <span class="navCartIcon"><Icon icon="ion:cart-outline" /></span>
-            cart [{{navCarItems}}]
+            cart [{{getCart.length}}]
           </li>
         </router-link>
         </ul>
