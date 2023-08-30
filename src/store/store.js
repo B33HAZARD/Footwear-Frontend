@@ -36,6 +36,10 @@ const mutations = {
        } else
        state.cart.push(product);
     },
+
+    setCartEmpty(state, product) {
+        state.cart = product;
+    }
 }
 
 const actions = {

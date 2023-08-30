@@ -11,9 +11,11 @@
             </div>
             <CartProduct />
         </div>
-        <router-link to="/checkout">
-            <button class="checkoutBtn">checkout</button>
+      <div class="row g-0 justify-content-end sectionPaddingBottom">
+        <router-link to="/checkout" class="text-end">
+            <button class="checkoutBtn">Checkout</button>
         </router-link>
+      </div>
     </div>
 </template>
 

@@ -1,0 +1,96 @@
+.billDetailsWrapper {
+    background-color: #F5F5F5;
+    padding: 2rem;
+}
+
+.billDetailsWrapper h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 40px !important;
+    font-family: 'Rokkitt', serif;
+}
+
+.billFormGroup {
+    margin-bottom: 15px;
+}
+
+.billFormLabels {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 13px;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.billFormControls {
+    display: block;
+    width: 100%;
+    padding: 14px 10px;
+    font-size: 13px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 2px;
+    color: #999;
+}
+
+.billFormControls:focus {
+    outline: 1px solid #777;
+}
+
+.billFormControls::placeholder {
+    color: #999;
+}
+
+/* ------ Cart Total ------ */
+
+.cartBlockPadding {
+    padding-inline: 3rem;
+}
+
+ul.totalBreakdown {
+    padding: 0;
+    margin: 0;
+}
+
+ul.totalBreakdown li {
+    list-style-type: none;
+    font-weight: 400;
+    width: 100%;
+    color: #595959;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+ul.totalBreakdown li span {
+    width: 100px;
+    display: inline-block;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 15px;
+    text-align: end;
+}
+
+ul.totalBreakdown li span:first-child {
+    width: calc(100% - 100px);
+    text-align: start;
+}
+
+/* ------ Payment Method ------ */
+
+.billMethodLabels {
+    color: #595959;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 300;
+    padding-left: 5px;
+    margin-bottom: 8px;
+}
+
+.billPaymentMethodTCs,
+.billPaymentMethod {
+    margin-bottom: 20px;
+}
+
+.billPaymentMethodTCs {
+    display: flex;
+    align-items: flex-start;
+}
