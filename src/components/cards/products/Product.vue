@@ -2,7 +2,7 @@
 
 
 export default {
-    name: "Products-component",
+    name: "Product-component",
     props: {
         title: String,
         price: Number,
@@ -40,5 +40,5 @@ export default {
 
 
 <style scoped>
-@import './products.css';
+@import './product.css';
 </style>

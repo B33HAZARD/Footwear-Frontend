@@ -37,14 +37,13 @@
 
 <script>
 import { Icon } from '@iconify/vue2';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
     name: "CartProduct-component",
     data() {
         return {
-            image: '/assets/images/item-3.jpg',
-            inputValue: 1
+
         }
     },
     components: {
@@ -52,8 +51,14 @@ export default {
     },
 
     methods: {
+
+        ...mapMutations([
+            'removeSingleProduct'
+        ]),
+
       handleClick(index) {
-        this.getCart.splice(index, 1);
+        this.removeSingleProduct(index);
+        this.getCart.length == 0 && this.$router.push({name: 'Home'});
         }
     },
 

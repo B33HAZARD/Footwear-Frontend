@@ -37,6 +37,10 @@ const mutations = {
        state.cart.push(product);
     },
 
+    removeSingleProduct(state, productIndex) {
+        state.cart.splice(productIndex, 1);
+    },
+
     setCartEmpty(state, product) {
         state.cart = product;
     }
@@ -60,6 +64,10 @@ const actions = {
             commit('setSingleProduct', response.data);
         })
     },
+
+    // updateCart: async ({commit}, product) => {
+    //     d
+    // }
 }
 
 

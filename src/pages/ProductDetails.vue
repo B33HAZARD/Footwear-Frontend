@@ -84,7 +84,8 @@ export default {
         img: this.product.image,
         id: this.product.id,
       }
-      this.addProductToCart(this.cartObj)
+      this.addProductToCart(this.cartObj);
+      this.inputValue = 1;
     }
   },
 
