@@ -14,6 +14,11 @@ const getters = {
     products: state => state.products,
     product: state => state.singleProduct,
     getCart: state => state.cart,
+    // getCart: (state) => {
+    //     const cart = localStorage.setItem('localCart', state.cart);
+    //     return cart;
+    // }
+
 }
 
 const mutations = {
@@ -26,23 +31,29 @@ const mutations = {
         state.singleProduct = item
     },
 
+    setCart(state, cart) {
+        state.cart = cart;
+    },
+
     addProductToCart(state, product) {
        if(state.cart.length) {
            const existingItem = state.cart.find(item => item.id === product.id);
            if(existingItem){
-               existingItem.count += product.count
+               existingItem.count += product.count;
            } else
-           state.cart.push(product)
+           state.cart.push(product);
        } else
        state.cart.push(product);
     },
 
     removeSingleProduct(state, productIndex) {
         state.cart.splice(productIndex, 1);
+        localStorage.setItem('cart', JSON.stringify(state.cart));
     },
 
     setCartEmpty(state, product) {
         state.cart = product;
+        localStorage.clear();
     }
 }
 
@@ -65,9 +76,10 @@ const actions = {
         })
     },
 
-    // updateCart: async ({commit}, product) => {
-    //     d
-    // }
+    addToCart:  ({commit, state}, product) => {
+        commit('addProductToCart', product);
+        localStorage.setItem('cart', JSON.stringify(state.cart));
+    }
 }
 
 

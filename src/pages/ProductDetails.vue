@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/nav/Breadcrumbs.vue";
 import { Icon } from '@iconify/vue2';
 import ProductSize from "../components/size/ProductSize.vue";
 
-import { mapActions, mapMutations, mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "ProductDetails-page",
@@ -42,10 +42,7 @@ export default {
 
     ...mapActions([
       'getProductDetails',
-    ]),
-
-    ...mapMutations([
-      'addProductToCart',
+      'addToCart'
     ]),
 
     TotalPrice() {
@@ -84,7 +81,8 @@ export default {
         img: this.product.image,
         id: this.product.id,
       }
-      this.addProductToCart(this.cartObj);
+      this.addToCart(this.cartObj);
+      // resets
       this.inputValue = 1;
     }
   },

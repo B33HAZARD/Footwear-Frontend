@@ -39,6 +39,7 @@ export default {
     handleShowMenu: function() {
       this.showMenu = !this.showMenu;
     },
+
   },
 
 }
