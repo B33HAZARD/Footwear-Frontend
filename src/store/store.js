@@ -6,48 +6,55 @@ Vue.use(Vuex);
 
 const state = {
     products: null,
-    singleProductId: null,
     singleProduct: null,
-    price: 30,
-    size: 7,
-    quantity: 1,
+    cart: [],
 }
 
 const getters = {
     products: state => state.products,
     product: state => state.singleProduct,
-    totalPrice: state => state.quantity * state.price,
-    getSize: state => state.size,
-    getQuantity: state => state.quantity,
+    getCart: state => state.cart,
+    // getCart: (state) => {
+    //     const cart = localStorage.setItem('localCart', state.cart);
+    //     return cart;
+    // }
+
 }
 
 const mutations = {
 
-    getAllProducts(state, items) {
+    setAllProducts(state, items) {
         state.products = items;
     },
 
-    getProductId(state, id) {
-        console.log("mutations id: ", id)
-        state.singleProductId = id;
-    },
-
-    getSingleProduct(state, item) {
+    setSingleProduct(state, item) {
         state.singleProduct = item
     },
 
-    updateItemCount(state, inputValue) {
-        state.quantity = inputValue;
+    setCart(state, cart) {
+        state.cart = cart;
     },
 
-    updateSize(state, size) {
-        state.size = size;
+    addProductToCart(state, product) {
+       if(state.cart.length) {
+           const existingItem = state.cart.find(item => item.id === product.id);
+           if(existingItem){
+               existingItem.count += product.count;
+           } else
+           state.cart.push(product);
+       } else
+       state.cart.push(product);
     },
 
-    setPrice(state, price) {
-        state.price = price;
+    removeSingleProduct(state, productIndex) {
+        state.cart.splice(productIndex, 1);
+        localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+
+    setCartEmpty(state, product) {
+        state.cart = product;
+        localStorage.clear();
     }
-
 }
 
 const actions = {
@@ -56,7 +63,7 @@ const actions = {
         await axios
         .get('https://fakestoreapi.com/products')
         .then(response => {
-            commit('getAllProducts', response.data);
+            commit('setAllProducts', response.data);
         })
         .catch(err => console.log(err))
     },
@@ -65,10 +72,14 @@ const actions = {
             await axios
             .get(`https://fakestoreapi.com/products/${id}`)
             .then(response => {
-            console.log("Just one product: ", response.data);
-            commit('getSingleProduct', response.data);
+            commit('setSingleProduct', response.data);
         })
     },
+
+    addToCart:  ({commit, state}, product) => {
+        commit('addProductToCart', product);
+        localStorage.setItem('cart', JSON.stringify(state.cart));
+    }
 }
 
 

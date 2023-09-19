@@ -1,6 +1,6 @@
 <template>
     <div class="row g-0 mb-4">
-        <div class="col-auto sizes align-self-center" :class="{'selected': getSize == size.size}" v-for="size in sizes" :key="'s' + size.id" @click="$emit('setSize', size.size)">
+        <div class="col-auto sizes align-self-center" :class="{'selected': isSelected == size.size}" v-for="(size, index) in sizes" :key="'s' + index" @click="handleClickSizes" :id="size.id">
         {{size.size}}
     </div>
     </div>
@@ -30,7 +30,9 @@ export default {
                 {size:13, id: 13},
                 {size:13.5, id: 14},
                 {size:14, id: 15},
-            ]
+            ],
+
+            isSelected: 7
         }
     },
 
@@ -39,6 +41,14 @@ export default {
             'getSize'
         ]),
     },
+
+    methods: {
+        handleClickSizes(e) {
+            console.log("size of", typeof e.target.innerText);
+            this.isSelected = e.target.innerText;
+            this.$emit('setSize', e.target.innerText);
+        }
+    }
 
 }
 
